@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rock_Paper_Scissor</title>
+  <link rel="stylesheet" href="style.css">
+  
+</head>
+<body>
+
+  <h1>Rock Paper Scissor Game</h1><br><br>
+
+
+  <!-- button 1st -->
+
+  <button class="button" onclick="
+
+
+    userChoice;
+    userChoice = 'Rock';
+    document.querySelector('#userChoice').innerText = 'User Choice is ' + userChoice;
+    document.querySelector('#computerChoice').innerText = 'Computer Choice is ' + generateComputerChoice();
+    document.querySelector('#result').innerText = 'Result🟰 '+resultMsg();
+
+    // console.log(JSON.stringify(score));
+    document.querySelector('#score').innerText = 'SCORE '+JSON.stringify(score);
+
+  ">Rock</button>
+
+
+
+
+  <!-- Button 2nd -->
+
+  
+  <button class="button" onclick="
+  
+    userChoice = 'Paper';
+    document.querySelector('#userChoice').innerText = 'User Choice is ' + userChoice;
+    document.querySelector('#computerChoice').innerText = 'Computer Choice is ' + generateComputerChoice();
+    document.querySelector('#result').innerText = 'Result🟰 '+resultMsg();
+
+    // console.log(JSON.stringify(score));
+    document.querySelector('#score').innerText = 'SCORE '+JSON.stringify(score);
+
+  " >Paper</button>
+
+
+
+
+  <!-- Button 3rd -->
+
+  <button class="button" onclick="
+  
+    userChoice = 'Scissor';
+    document.querySelector('#userChoice').innerText = 'User Choice is ' + userChoice;
+    document.querySelector('#computerChoice').innerText = 'Computer Choice is ' + generateComputerChoice();
+    document.querySelector('#result').innerText = 'Result🟰 '+resultMsg();
+
+    // console.log(JSON.stringify(score));
+    document.querySelector('#score').innerText = 'SCORE '+JSON.stringify(score);
+
+  " > Scissor</button><br><br>
+
+
+
+  <div>
+    <h4 id="userChoice"></h4>
+    <h4 id="computerChoice"></h4>
+    <h4 id="result"></h4>
+    <h4 id="score">SCORE</h4>
+  </div>
+  
+  <script>
+    let userChoice;
+    let randomChoice;
+
+
+    let score={
+      Won : 0,
+      Lost : 0,
+      Tie : 0,
+
+
+    }
+    
+    
+
+    function generateComputerChoice(){
+
+      
+      randomChoice = Math.random() * 3;
+  
+      if(randomChoice>0 && randomChoice<=1){
+      return'Rock';
+      }
+      else if(randomChoice>1 && randomChoice<=2){
+        return 'Paper';
+      }
+      else{
+        return 'Scissor';
+      }
+    }
+
+
+    function resultMsg(){
+
+      localStorage.setItem('score' , JSON.stringify(score));
+
+      if(userChoice=='Rock'){
+        if(randomChoice>0 && randomChoice<=1){
+          score.Tie += 1;
+          return 'Tie';
+        }
+        else if(randomChoice>1 && randomChoice<=2){
+          score.Lost += 1;
+          return 'Computer Won';
+        }
+        else{
+          score.Won += 1;
+          return 'User Won';
+        }
+      }
+      else if(userChoice=='Paper'){
+        if(randomChoice>0 && randomChoice<=1){
+          score.Won += 1;
+          return 'User Won';
+        }
+        else if(randomChoice>2 && randomChoice<=3){
+          score.Lost += 1;
+          return 'Computer Won';
+        }
+        else{
+          score.Tie += 1;
+          return 'Tie';
+        }
+      }
+      else{
+        if(randomChoice>0 && randomChoice<=1){
+          score.Lost += 1;
+          return 'Computer Won';
+        }
+        else if(randomChoice>1 && randomChoice<=2){
+          score.Won += 1;
+          return 'User Won';
+        }
+        else{
+          score.Tie += 1;
+          return 'Tie';
+        }
+      }
+
+    }
+
+
+  </script>
+</body>
+</html>
